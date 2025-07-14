@@ -3,7 +3,7 @@
 <head>
     <title>安全漏洞验证</title>
     <script>
-        // 无害但能证明危害的脚本
+
         document.addEventListener('DOMContentLoaded', () => {
             const domain = document.domain;
             const payload = {
@@ -13,7 +13,7 @@
                 timestamp: new Date().toISOString()
             };
             
-            // 创建漏洞证明元素
+
             const warnBox = document.createElement('div');
             warnBox.style = `
                 position: fixed; top: 0; left: 0; width: 100%;
@@ -22,7 +22,7 @@
                 box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             `;
             warnBox.innerHTML = `
-                <h2 style="margin:0">${domain} 存在高危漏洞!</h2>
+                <h2 style="margin:0">${domain} 验证漏洞</h2>
                 <p style="margin:10px 0">
                     <strong>已获取当前环境信息:</strong>
                     ${navigator.userAgent.substring(0,60)}...
@@ -30,13 +30,6 @@
             `;
             document.body.prepend(warnBox);
             
-            // 无害的"攻击"日志输出
-            console.log("!!! 漏洞验证成功 !!!");
-            console.log("攻击者可执行以下操作:");
-            console.log("1. 窃取所有未设HttpOnly的Cookie");
-            console.log("2. 以用户身份调用任意API");
-            console.log(`3. 劫持域名 ${domain} 进行非法活动`);
-            console.log("当前环境:", payload);
         });
     </script>
     <style>
